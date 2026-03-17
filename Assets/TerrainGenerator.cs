@@ -1,4 +1,5 @@
 using System.Net;
+using System.Xml.Linq;
 using UnityEngine;
 
 public class TerrainGenerator : MonoBehaviour
@@ -24,7 +25,7 @@ public class TerrainGenerator : MonoBehaviour
         Terrain terrain = GetComponent<Terrain>();
         terrain.terrainData = GenerateTerrain(terrain.terrainData);
 
-        offsetX += Time.deltaTime * 5f;
+        //offsetX += Time.deltaTime * 5f;
     } 
 
     TerrainData GenerateTerrain (TerrainData terrainData)
@@ -53,6 +54,7 @@ public class TerrainGenerator : MonoBehaviour
 
     float CalculateHeight (int x, int y)
     {
+        
         float xCoord = (float)x / width * scale + offsetX;
         float yCoord = (float)y / height * scale + offsetY;
 
