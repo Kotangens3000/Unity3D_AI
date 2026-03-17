@@ -7,6 +7,7 @@ WASD - movement
 SPACE - jumping
 SHIFT - running
 C - crouching
+E - interact
 
 # References
 https://youtu.be/vFvwyu_ZKfU?si=yA9Vb6HWxtZ1ars0
