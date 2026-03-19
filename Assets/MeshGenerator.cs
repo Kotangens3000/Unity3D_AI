@@ -16,6 +16,9 @@ public class MeshGenerator : MonoBehaviour
 
 	public float strength = 0.3f;
 	
+    public float offsetX = 0f;
+    public float offsetZ = 0f;
+
 	float minTerrainHeight;
 	float maxTerrainHeight;
 
@@ -25,11 +28,17 @@ public class MeshGenerator : MonoBehaviour
 		mesh = new Mesh();
 		mesh.indexFormat = UnityEngine.Rendering.IndexFormat.UInt32;
 		GetComponent<MeshFilter>().mesh = mesh;
+		//RandomOffset();
 		CreateShape();
 		UpdateMesh();
 
 	}
 
+	public void RandomOffset()
+	{
+        offsetX = Random.Range (0f, 9999f);
+        offsetZ = Random.Range (0f, 9999f);
+	}
 	void Update()
 	{
 	}
@@ -42,7 +51,7 @@ public class MeshGenerator : MonoBehaviour
 		{
 			for (int x = 0; x <= xSize; x++)
 			{
-				float y = Mathf.PerlinNoise(x * strength, z * strength) * ySize;
+				float y = Mathf.PerlinNoise(x * strength + offsetX, z * strength + offsetZ) * ySize;
 				vertices[i] = new Vector3(x, y, z);
 
 				if (y > maxTerrainHeight) maxTerrainHeight = y;

@@ -10,10 +10,13 @@ SPACE - jumping
 
 SHIFT - running
 
+MOUSE2 - zoom
+
 C - crouching
 
 E - interact
 
+F - dialogues
 
 # References
 https://youtu.be/vFvwyu_ZKfU?si=yA9Vb6HWxtZ1ars0
@@ -32,3 +35,6 @@ https://docs.unity3d.com/ScriptReference/Physics.Raycast.html
 
 https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/interface
 
+https://youtu.be/X-7A0WzSx5A?si=BIdfTcN3HRhKzvdr
+
+https://www.youtube.com/watch?v=_nRzoTzeyxU
