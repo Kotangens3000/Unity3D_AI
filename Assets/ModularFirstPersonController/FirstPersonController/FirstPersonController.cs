@@ -16,6 +16,7 @@ using UnityEngine.UI;
 
 public class FirstPersonController : MonoBehaviour
 {
+    static public bool dialogue;
     private Rigidbody rb;
 
     #region Camera Movement Variables
@@ -202,6 +203,20 @@ public class FirstPersonController : MonoBehaviour
 
     private void Update()
     {
+        if(!dialogue)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+            Inputs();
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+    }
+    private void Inputs()
+    {
         #region Camera
 
         // Control camera movement
@@ -368,7 +383,7 @@ public class FirstPersonController : MonoBehaviour
     {
         #region Movement
 
-        if (playerCanMove)
+        if (!dialogue && playerCanMove)
         {
             // Calculate how fast we should be moving
             Vector3 targetVelocity = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
