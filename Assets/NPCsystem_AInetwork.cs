@@ -1,10 +1,17 @@
 using UnityEngine;
-public class NPCsystem : MonoBehaviour
+public class NPCsystem_AInetwork : MonoBehaviour
 {
-    public bool stareatplayer = true;
+    private OllamaConnector ollama;
     public TMPro.TMP_InputField myInput;
+    public bool stareatplayer = true;
     private Transform player;
     bool player_detection = false;
+
+    void Start()
+    {
+        ollama = gameObject.AddComponent<OllamaConnector>();
+    }
+
     void Update()
     {
         if(player_detection)
@@ -19,9 +26,10 @@ public class NPCsystem : MonoBehaviour
                 Quaternion rotation = Quaternion.LookRotation(direction);
                 transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * 5f);
             }
-            //only when F is pressed, show up a dialogue
+            //As it is AI, it uses LLM for dialogues
             if (Input.GetKeyDown(KeyCode.F) && !FirstPersonController.dialogue)
             {
+                
                 Debug.Log("Dialogue started");
                 var dialtri = GetComponent<DialogueTrigger>(); //new DialogueTrigger() is not allowed, thus, error => no custom text/name
                 dialtri.TriggerDialogue();
