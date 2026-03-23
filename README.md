@@ -3,9 +3,27 @@ Using Unity to Create 3D Games with AI Integration
 
 # Dependencies
 
-You need to download Ollama for some neural network AI npcs to work.
+The project uses a local LLM for some NPCs to work.
+
+You need to download Ollama (the project uses small language model: **phi3**) for some neural network AI npcs to work.
 
 https://ollama.com
+
+After that you need to run Ollama, the project uses **phi3 model**:
+
+If you use Linux, run 
+
+```
+ollama serve
+
+ollama run phi3
+```
+
+The Ollama works when you can visit your localhost link (or in cloud, I used local SLM) in your browser. It should work by this link if you downloaded and ran Ollama:
+
+http://127.0.0.1:11434/
+
+(or any other link/app/whatever where you can check if it works)
 
 # Movement
 Only needed to showcase the landscapes, enemy's AI and NPCs
