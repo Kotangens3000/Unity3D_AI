@@ -1,6 +1,12 @@
 # Topic
 Using Unity to Create 3D Games with AI Integration
 
+# Dependencies
+
+You need to download Ollama for some neural network AI npcs to work.
+
+https://ollama.com
+
 # Movement
 Only needed to showcase the landscapes, enemy's AI and NPCs
 
@@ -38,3 +44,6 @@ https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/inte
 https://youtu.be/X-7A0WzSx5A?si=BIdfTcN3HRhKzvdr
 
 https://www.youtube.com/watch?v=_nRzoTzeyxU
+
+https://ollama.com
+
