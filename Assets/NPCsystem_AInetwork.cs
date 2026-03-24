@@ -2,7 +2,7 @@ using UnityEngine;
 public class NPCsystem_AInetwork : MonoBehaviour
 {
     private OllamaConnector ollama;
-    public TMPro.TMP_InputField myInput;
+    public GameObject myInput;
     public bool stareatplayer = true;
     private Transform player;
     bool player_detection = false;
@@ -29,7 +29,7 @@ public class NPCsystem_AInetwork : MonoBehaviour
             //As it is AI, it uses LLM for dialogues
             if (Input.GetKeyDown(KeyCode.F) && !FirstPersonController.dialogue)
             {
-                
+                myInput.SetActive(true);
                 Debug.Log("Dialogue started");
                 var dialtri = GetComponent<DialogueTrigger>(); //new DialogueTrigger() is not allowed, thus, error => no custom text/name
                 dialtri.TriggerDialogue();
