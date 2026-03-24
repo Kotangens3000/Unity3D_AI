@@ -65,3 +65,5 @@ https://www.youtube.com/watch?v=_nRzoTzeyxU
 
 https://ollama.com
 
+https://learn.microsoft.com/ru-ru/dotnet/api/system.collections.generic.linkedlistnode-1?view=net-8.0
+

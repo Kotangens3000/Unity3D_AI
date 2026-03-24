@@ -2,7 +2,7 @@ using UnityEngine;
 public class NPCsystem : MonoBehaviour
 {
     public bool stareatplayer = true;
-    public TMPro.TMP_InputField myInput;
+    public GameObject myInput;
     private Transform player;
     bool player_detection = false;
     void Update()
@@ -22,6 +22,7 @@ public class NPCsystem : MonoBehaviour
             //only when F is pressed, show up a dialogue
             if (Input.GetKeyDown(KeyCode.F) && !FirstPersonController.dialogue)
             {
+                myInput.SetActive(false);
                 Debug.Log("Dialogue started");
                 var dialtri = GetComponent<DialogueTrigger>(); //new DialogueTrigger() is not allowed, thus, error => no custom text/name
                 dialtri.TriggerDialogue();
