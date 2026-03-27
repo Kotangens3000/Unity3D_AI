@@ -1,5 +1,16 @@
 # Topic
-Using Unity to Create 3D Games with AI Integration
+
+## Using Unity to Create 3D Games with AI Integration
+
+This project is NOT a game, it's a PROTOTYPE (PoC) to showcase where/how AI can be used.
+
+AI is, for example, LLM, Math (perlin noise), complicated algorythms, strict rules, etc...
+
+Here I showcase:
+
+- Landspaces generation
+- NPC bot vs NPC ai (human made responces vs llm responses)
+- WIP: enemies (human vs neural network)
 
 # Dependencies
 
@@ -24,6 +35,14 @@ The Ollama works when you can visit your localhost link (or in cloud, I used loc
 http://127.0.0.1:11434/
 
 (or any other link/app/whatever where you can check if it works)
+
+# Known issues
+
+**States aren't synchronized at first**
+When you want to interact with an NPC at first time, it will show up a blank dialogue text. This is where the AI (input field) text goes to. For example, if you got to a NPC with yellow hat (who is just a bot), it will be blank, then you go to the green one -- it has got its dialogue. Yes, it will show up your prompt, but the response will get the yellow hat NPC. 
+
+**In Unity: you can't move objects in hierarchy**
+Moving can be fixed by cutting needed items and pasting them. That happens at least for me on Gentoo Linux, while a completely new project without new added objects can be moved as usually.
 
 # Movement
 Only needed to showcase the landscapes, enemy's AI and NPCs
@@ -67,3 +86,8 @@ https://ollama.com
 
 https://learn.microsoft.com/ru-ru/dotnet/api/system.collections.generic.linkedlistnode-1?view=net-8.0
 
+https://youtu.be/BLfNP4Sc_iA?si=w3R9kvTaJLh79AoR
+
+https://youtu.be/47ZkulgnadI?si=F0WkDD6bg0GO8mCn
+
+https://youtu.be/DU7cgVsU2rM?si=9Tp7Q_4lAb1AWSMe
