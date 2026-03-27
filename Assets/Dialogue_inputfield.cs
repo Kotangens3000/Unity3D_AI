@@ -14,10 +14,15 @@ public class Dialogue_inputfield : MonoBehaviour
     public string systemPrompt;
     List<string> history;
     private string url = "http://127.0.0.1:11434/api/generate";
+    public DialogueTrigger trigger;
+    public NPCsystem action;
 
     private void Start()
     {
-        history = new List<string>();
+        trigger = FindAnyObjectByType<DialogueTrigger>();
+        history = trigger.dialogue.sentences;
+
+        trigger.dialogue.sentences = new List<string>();
     } 
 
     public void SendRequest()
@@ -28,17 +33,21 @@ public class Dialogue_inputfield : MonoBehaviour
             return;
         }
         
+        trigger.dialogue.sentences.Add(inputField.text);
+        Debug.Log(trigger.dialogue.sentences.Count);
         StartCoroutine(PostRequest(inputField.text));
         inputField.text = "";
     }
 
     IEnumerator PostRequest(string prompt)
     {
-        outputText.text = "NPC is thinking...";
+        trigger.dialogue.sentences.Add("NPC is thinking...");
+        FindAnyObjectByType<DialogueManager>().UpdateDialogue(trigger.dialogue);
+        //outputText.text = "NPC is thinking...";
         history.Add("User: " + prompt + "\n");
         string fullPrompt = String.Join("\n", history) + "AI:";
-        fullPrompt = fullPrompt.Replace("\n", "\\n").Replace("\"", "\\\"").Replace("\r", "\\r");
-        systemPrompt = systemPrompt.Replace("\n", "\\n").Replace("\"", "\\\"").Replace("\r", "\\r");
+        //fullPrompt = fullPrompt.Replace("\n", "\\n").Replace("\"", "\\\"").Replace("\r", "\\r");
+        //systemPrompt = systemPrompt.Replace("\n", "\\n").Replace("\"", "\\\"").Replace("\r", "\\r");
 
         OllamaRequest req = new OllamaRequest();
         req.model = "phi3:latest";
@@ -62,12 +71,17 @@ public class Dialogue_inputfield : MonoBehaviour
             if (request.result == UnityWebRequest.Result.Success)
             {
                 var response = JsonUtility.FromJson<OllamaResponse>(request.downloadHandler.text);
-                outputText.text = response.response;
+                //outputText.text = response.response;
+                trigger.dialogue.sentences.RemoveAt(trigger.dialogue.sentences.IndexOf("NPC is thinking..."));
+                trigger.dialogue.sentences.Add(response.response);
+                Debug.Log(response.response);
                 history.Add("AI: " + response.response + "\n");
+                FindAnyObjectByType<DialogueManager>().UpdateDialogue(trigger.dialogue);
             }
             else
             {
-                outputText.text = "Error: " + request.error;
+                trigger.dialogue.sentences.RemoveAt(trigger.dialogue.sentences.IndexOf("NPC is thinking..."));
+                trigger.dialogue.sentences.Add("Error: " + request.error);
             }
         }
     }

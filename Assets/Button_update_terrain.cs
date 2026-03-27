@@ -6,7 +6,7 @@ public class Button_update_terrain : MonoBehaviour, IInteractable
 
     public void Start()
     {
-        generator = Object.FindFirstObjectByType<MeshGenerator>();
+        generator = Object.FindAnyObjectByType<MeshGenerator>();
     }
     public void Interact()
     {
