@@ -4,7 +4,7 @@
 
 This project is NOT a game, it's a PROTOTYPE (PoC) to showcase where/how AI can be used.
 
-AI is, for example, LLM, Math (perlin noise), complicated algorythms, strict rules, etc...
+AI is, for example, LLM, Math (perlin noise), complicated algorythms/scripts, strict rules, etc...
 
 Here I showcase:
 
@@ -53,6 +53,8 @@ SPACE - jumping
 
 SHIFT - running
 
+MOUSE1 - shoot (semi-automatic)
+
 MOUSE2 - zoom
 
 C - crouching
@@ -91,3 +93,5 @@ https://youtu.be/BLfNP4Sc_iA?si=w3R9kvTaJLh79AoR
 https://youtu.be/47ZkulgnadI?si=F0WkDD6bg0GO8mCn
 
 https://youtu.be/DU7cgVsU2rM?si=9Tp7Q_4lAb1AWSMe
+
+https://youtu.be/KZROVLPQdWc?si=du2qPup0-rbscDTV

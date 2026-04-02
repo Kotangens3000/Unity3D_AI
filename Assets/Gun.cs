@@ -21,7 +21,7 @@ public class Gun : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            if (CurrentCooldown <= 0f)
+            if (CurrentCooldown <= 0f && !FirstPersonController.dialogue)
             {
                 OnGunShoot?.Invoke();
                 CurrentCooldown = FireCooldown;
