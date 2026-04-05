@@ -31,6 +31,9 @@ public class HostileAI : MonoBehaviour
 
     private bool isPlayerVisible;
     private bool isPlayerInRange;
+    private Vector3 lastKnownPosition;
+    private bool wasPlayerSeen = false; // the AI didn't see the player yet
+    Vector3 directionToPlayer;
 
     private void Awake()
     {
@@ -51,23 +54,57 @@ public class HostileAI : MonoBehaviour
 
     private void Update()
     {
+        //Debug.Log(wasPlayerSeen);
         DetectPlayer();
         UpdateBehaviourState();
     }
     private void OnDrawGizmosSelected()
     {
+        directionToPlayer = (playerTransform.position - transform.position).normalized;
+        if (Physics.Raycast(transform.position, directionToPlayer, out RaycastHit hit, visionRange*5))
+        {
+            if (hit.collider.CompareTag("Player"))
+            {
+                Gizmos.color = Color.red;
+                Gizmos.DrawLine(transform.position, hit.point);
+            }
+            else
+            {
+                Gizmos.color = Color.red;
+                Gizmos.DrawLine(transform.position, hit.point);
+            }
+        }
+
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, engagementRange);
 
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, visionRange);        
     }
-
     private void DetectPlayer()
     {
-        //Debug.Log("Detecting..");
-        isPlayerVisible = Physics.CheckSphere(transform.position, visionRange, playerLayerMask);
-        isPlayerInRange = Physics.CheckSphere(transform.position, engagementRange, playerLayerMask);
+        directionToPlayer = (playerTransform.position - transform.position).normalized;
+        //Raycast allows the bot to "see" the player and ignore him when he has hidden
+        if (Physics.Raycast(transform.position, directionToPlayer, out RaycastHit hit, visionRange*5))
+        {
+            if (LayerMask.LayerToName(hit.collider.gameObject.layer) == "Player")
+            {
+                isPlayerVisible = Physics.CheckSphere(transform.position, visionRange, playerLayerMask);
+                isPlayerInRange = Physics.CheckSphere(transform.position, engagementRange, playerLayerMask);
+                lastKnownPosition = playerTransform.position; // Enemy remembers Player's last place
+                wasPlayerSeen = true;
+                
+            }
+            else
+            {
+                isPlayerVisible = false;
+                isPlayerInRange = false;
+                //don't forget lastknownposition yet
+                //Debug.Log("collider: " + hit.collider.name + " layer: " + LayerMask.LayerToName(hit.collider.gameObject.layer));
+            }
+        }
+
+
     }
 
     private void FireProjectile()
@@ -87,7 +124,7 @@ public class HostileAI : MonoBehaviour
         float randomZ = Random.Range(-patrolRadius, patrolRadius);
 
         Vector3 potentialPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
-        
+
         if (Physics.Raycast(potentialPoint, -transform.up, 2f, terrainLayer))
         {
             currentPatrolPoint = potentialPoint;
@@ -104,18 +141,35 @@ public class HostileAI : MonoBehaviour
 
     private void PerformPatrol()
     {
-        //Debug.Log("Patrolling..");
-        if (!hasPatrolPoint) FindPatrolPoint();
+        if (wasPlayerSeen)
+        {
+            // We don't see the player, let's check his last known position
+            navMesh.SetDestination(lastKnownPosition);
+            
+            // If we didn't find him, forget him
+            if (Vector3.Distance(transform.position, lastKnownPosition) < 1f)
+            {
+                wasPlayerSeen = false; 
+                //Debug.Log("I've lost him!");
+            }
+        }
+        else
+        {
+            //Debug.Log("Patrolling..");
+            if (!hasPatrolPoint) FindPatrolPoint();
 
-        if (hasPatrolPoint) navMesh.SetDestination(currentPatrolPoint);
+            if (hasPatrolPoint) navMesh.SetDestination(currentPatrolPoint);
 
-        if (Vector3.Distance(transform.position, currentPatrolPoint) < 1f) hasPatrolPoint = false;
+            if (Vector3.Distance(transform.position, currentPatrolPoint) < 1f) hasPatrolPoint = false;
+        }
+
     }
 
     private void PerformChase()
     {
         //Debug.Log("Chasing..");
         if (playerTransform != null) navMesh.SetDestination(playerTransform.position);
+
     }
 
     private void PerformAttack()
