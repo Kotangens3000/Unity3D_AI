@@ -74,8 +74,6 @@ https://www.youtube.com/playlist?list=PLrMEhC9sAD1zprGu_lphl3cQSS3uFIXA9
 
 https://www.youtube.com/watch?v=Vh7wgvHZQBg
 
-https://youtu.be/K06lVKiY-sY?si=D7TiARAffPQwZYlI
-
 https://docs.unity3d.com/ScriptReference/Physics.Raycast.html
 
 https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/interface
@@ -88,6 +86,8 @@ https://ollama.com
 
 https://learn.microsoft.com/ru-ru/dotnet/api/system.collections.generic.linkedlistnode-1?view=net-8.0
 
+https://www.youtube.com/watch?v=XDFwaDRyMnw
+
 https://youtu.be/BLfNP4Sc_iA?si=w3R9kvTaJLh79AoR
 
 https://youtu.be/47ZkulgnadI?si=F0WkDD6bg0GO8mCn
@@ -95,3 +95,11 @@ https://youtu.be/47ZkulgnadI?si=F0WkDD6bg0GO8mCn
 https://youtu.be/DU7cgVsU2rM?si=9Tp7Q_4lAb1AWSMe
 
 https://youtu.be/KZROVLPQdWc?si=du2qPup0-rbscDTV
+
+https://www.youtube.com/watch?v=BFKhytjEuqw
+
+https://arxiv.org/html/2410.15644v1
+
+https://ceur-ws.org/Vol-4122/paper14.pdf
+
+https://gameprogrammingpatterns.com/state.html 
