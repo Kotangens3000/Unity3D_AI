@@ -10,7 +10,7 @@ Here I showcase:
 
 - Landspaces generation
 - NPC bot vs NPC ai (human made responces vs llm responses)
-- WIP: enemies (human vs neural network)
+- enemies (human vs neural network)
 
 # Dependencies
 
