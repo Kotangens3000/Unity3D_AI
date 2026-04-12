@@ -9,8 +9,16 @@ AI is, for example, LLM, Math (Perlin noise), complicated algorythms/scripts, st
 Here I showcase:
 
 - Landspaces generation (Perlin noise)
-- NPC bot vs NPC ai (human made responces vs llm responses)
+- NPC bot vs NPC AI (human made responces vs llm responses)
 - enemies (FSM)
+
+# Images
+Procedural Content Generation
+![Procedural Content Generation](Images/Figure1.png)
+LLM Dialogue
+![](Images/Figure2.png)
+Finite State Machine
+![](Images/Figure3.png)
 
 # Dependencies
 
